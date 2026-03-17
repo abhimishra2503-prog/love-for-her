@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Mrs Mishra ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  background: black;
+  color: white;
+  font-family: 'Courier New', monospace;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Center everything */
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Netflix-style red glow */
+.glow {
+  color: #e50914;
+  text-shadow: 0 0 10px #e50914, 0 0 20px #e50914;
+}
+
+/* Typing text */
+#typing {
+  font-size: 2em;
+  border-right: 2px solid white;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 3s steps(30, end) forwards, blink 0.8s infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+/* Hidden sections */
+.hidden {
+  display: none;
+}
+
+/* Button */
+button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  background: #e50914;
+  color: white;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+/* Hearts */
+.heart {
+  position: absolute;
+  color: red;
+  animation: float 5s linear infinite;
+}
+
+@keyframes float {
+  from { transform: translateY(100vh); opacity: 1; }
+  to { transform: translateY(-10vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div class="container" id="intro">
+  <div id="typing">This is not for everyone...</div>
+</div>
+
+<!-- PASSWORD SCREEN -->
+<div class="container hidden" id="passwordScreen">
+  <h1 class="glow">Only for Mrs Mishra ❤️</h1>
+  <button onclick="enter()">Enter</button>
+</div>
+
+<!-- MAIN -->
+<div class="container hidden" id="main">
+  <h1 class="glow">Abhiruchi</h1>
+  <p>Wait… just one second.</p>
+  <button onclick="reveal()">Continue</button>
+
+  <div id="message" class="hidden">
+    <p style="font-size:1.5em; max-width:500px; margin:auto;">
+      I tried to ignore this…  
+      I really did.  
+
+      But every time…  
+      it comes back to you.  
+
+      And the truth is…  
+
+      I Love you.  
+      More than I planned. ❤️ 
+
+      And somewhere,if its not you then no one... 
+      you were always *Mrs Mishra* to me.
+    </p>
+
+    <p>(If music didn't start, tap play below 🎧)</p>
+  </div>
+</div>
+
+<!-- MUSIC -->
+<audio id="music" loop controls>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5c6d8b1f1d.mp3?filename=romantic-ambient-110997.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// After typing, show password screen
+setTimeout(() => {
+  document.getElementById("intro").style.display = "none";
+  document.getElementById("passwordScreen").classList.remove("hidden");
+}, 3500);
+
+// Password logic
+function enter() {
+  let pass = prompt("Enter the secret word 👀");
+  if(pass && pass === "YOU'REDAMNMINE") {
+    document.getElementById("passwordScreen").style.display = "none";
+    document.getElementById("main").classList.remove("hidden");
+
+    let music = document.getElementById("music");
+    music.play().catch(() => {
+      alert("Tap anywhere once to start the music ❤️");
+    });
+
+  } else {
+    alert("Access denied.");
+  }
+}
+
+// Reveal message
+function reveal() {
+  document.getElementById("message").style.display = "block";
+}
+
+// Floating hearts
+setInterval(() => {
+  let heart = document.createElement("div");
+  heart.innerHTML = "❤️";
+  heart.className = "heart";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 5000);
+}, 300);
+</script>
+
+</body>
+</html>
